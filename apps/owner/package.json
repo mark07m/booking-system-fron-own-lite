@@ -14,7 +14,16 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "next": "15.5.3",
-    "@booking-system/theme": "workspace:*"
+    "@booking-system/theme": "workspace:*",
+    "axios": "^1.6.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0",
+    "zustand": "^4.4.0",
+    "react-hook-form": "^7.47.0",
+    "@hookform/resolvers": "^3.3.0",
+    "zod": "^3.22.0",
+    "date-fns": "^2.30.0",
+    "@heroicons/react": "^2.0.0"
   },
   "devDependencies": {
     "typescript": "^5",
