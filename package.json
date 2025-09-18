@@ -5,17 +5,24 @@
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
     "typecheck": "turbo run typecheck",
+    "quality": "npm run lint && npm run typecheck && npm run build",
+    "quality:fix": "npm run lint:fix && npm run format && npm run typecheck",
+    "quality:check": "node scripts/check-quality.js",
+    "quality:check:fix": "node scripts/check-quality.js --fix",
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@turbo/gen": "^1.10.12",
-    "turbo": "^1.10.12",
-    "prettier": "^3.0.0",
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^15.0.0"
+    "@turbo/gen": "^1.10.12",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "turbo": "^1.10.12"
   },
   "packageManager": "pnpm@8.0.0",
   "engines": {
