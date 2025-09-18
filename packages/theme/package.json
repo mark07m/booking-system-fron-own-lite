@@ -1,0 +1,14 @@
+{
+  "name": "@booking-system/theme",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "files": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
