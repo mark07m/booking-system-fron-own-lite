@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/src/app-shell/AppShell";
+import { EnvErrorBoundary } from "@/src/shared/components/EnvErrorBoundary";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={inter.className}>
-        <AppShell>{children}</AppShell>
+        <EnvErrorBoundary>
+          <AppShell>{children}</AppShell>
+        </EnvErrorBoundary>
       </body>
     </html>
   );

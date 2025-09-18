@@ -1,8 +1,12 @@
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
+import { publicEnv } from "./env";
+
+export const API_BASE_URL = publicEnv.NEXT_PUBLIC_API_BASE_URL;
 
 export const APP_CONFIG = {
-  name: "Booking System",
-  version: "1.0.0",
+  name: publicEnv.NEXT_PUBLIC_APP_NAME,
+  version: publicEnv.NEXT_PUBLIC_APP_VERSION,
+  url: publicEnv.NEXT_PUBLIC_APP_URL,
+  environment: publicEnv.NEXT_PUBLIC_ENVIRONMENT,
   description: "Система управления бронированием",
 } as const;
 
