@@ -1,1 +1,1 @@
-module.exports = require("@booking-system/config/prettier");
+module.exports = require("../../packages/config/prettier");

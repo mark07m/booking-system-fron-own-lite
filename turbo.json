@@ -13,11 +13,20 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"]
+    },
     "typecheck": {
       "dependsOn": ["^typecheck"]
     },
     "test": {
       "dependsOn": ["^build"]
+    },
+    "format": {
+      "outputs": []
+    },
+    "format:check": {
+      "outputs": []
     }
   }
 }

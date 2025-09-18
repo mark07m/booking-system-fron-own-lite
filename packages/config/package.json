@@ -5,8 +5,9 @@
   "main": "./index.js",
   "files": [
     "eslint",
-    "typescript",
-    "prettier"
+    "tsconfig",
+    "prettier",
+    "commitlint"
   ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -18,6 +19,13 @@
     "eslint-plugin-jsx-a11y": "^6.7.0",
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0"
+  },
+  "peerDependencies": {
+    "eslint": "^8.0.0",
     "prettier": "^3.0.0",
     "typescript": "^5.0.0"
   }

@@ -1,4 +1,4 @@
 module.exports = {
-  extends: ["@booking-system/config/eslint/nextjs"],
+  extends: ["../../packages/config/eslint"],
   root: true,
 };
