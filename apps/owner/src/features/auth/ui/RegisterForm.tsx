@@ -3,30 +3,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/src/shared/ui/Button";
 import { Input } from "@/src/shared/ui/Input";
 import { Label } from "@/src/shared/ui/Label";
-import { useLoginMutation } from "@/src/features/auth/model/useLoginMutation";
+import { useRegisterMutation } from "../model/useRegisterMutation";
+import { registerSchema, type RegisterFormData } from "../model/auth.schemas";
 import Link from "next/link";
 
-const registerSchema = z.object({
-  name: z.string().min(2, "Имя должно содержать минимум 2 символа"),
-  email: z.string().email("Некорректный email"),
-  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
-  confirmPassword: z.string(),
-  phone: z.string().optional(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Пароли не совпадают",
-  path: ["confirmPassword"],
-});
-
-type RegisterFormData = z.infer<typeof registerSchema>;
-
 export function RegisterForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { login } = useLoginMutation();
+  const { register: registerUser, isLoading, error } = useRegisterMutation();
 
   const {
     register,
@@ -36,27 +21,8 @@ export function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: RegisterFormData) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      // In a real app, this would call register API
-      console.log("Register data:", data);
-      
-      // For demo, simulate successful registration and auto-login
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Auto-login after registration
-      await login({
-        email: data.email,
-        password: data.password,
-      });
-    } catch (err: any) {
-      setError(err.message || "Ошибка регистрации");
-    } finally {
-      setIsLoading(false);
-    }
+  const onSubmit = (data: RegisterFormData) => {
+    registerUser(data);
   };
 
   return (

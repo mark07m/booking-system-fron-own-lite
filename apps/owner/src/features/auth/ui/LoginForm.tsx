@@ -1,20 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/src/shared/ui/Button";
 import { Input } from "@/src/shared/ui/Input";
 import { Label } from "@/src/shared/ui/Label";
 import { useLoginMutation } from "../model/useLoginMutation";
-
-const loginSchema = z.object({
-  email: z.string().email("Введите корректный email"),
-  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import { loginSchema, type LoginFormData } from "../model/auth.schemas";
 
 export function LoginForm() {
   const { login, isLoading, error } = useLoginMutation();
@@ -25,6 +17,9 @@ export function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      rememberMe: false,
+    },
   });
 
   const onSubmit = (data: LoginFormData) => {
@@ -66,6 +61,18 @@ export function LoginForm() {
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
           )}
+        </div>
+        
+        <div className="flex items-center">
+          <input
+            id="rememberMe"
+            type="checkbox"
+            {...register("rememberMe")}
+            className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
+          <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-900">
+            Запомнить меня
+          </label>
         </div>
       </div>
 

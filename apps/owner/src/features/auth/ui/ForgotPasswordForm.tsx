@@ -3,22 +3,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/src/shared/ui/Button";
 import { Input } from "@/src/shared/ui/Input";
 import { Label } from "@/src/shared/ui/Label";
+import { forgotPasswordSchema, type ForgotPasswordFormData } from "../model/auth.schemas";
+import { useForgotPasswordMutation } from "../model/useForgotPasswordMutation";
 import Link from "next/link";
 
-const forgotPasswordSchema = z.object({
-  email: z.string().email("Некорректный email"),
-});
-
-type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
-
 export function ForgotPasswordForm() {
-  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { forgotPassword, isLoading, error } = useForgotPasswordMutation();
 
   const {
     register,
@@ -28,23 +22,12 @@ export function ForgotPasswordForm() {
     resolver: zodResolver(forgotPasswordSchema),
   });
 
-  const onSubmit = async (data: ForgotPasswordFormData) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      // In a real app, this would call forgot password API
-      console.log("Forgot password data:", data);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setIsSubmitted(true);
-    } catch (err: any) {
-      setError(err.message || "Ошибка отправки запроса");
-    } finally {
-      setIsLoading(false);
-    }
+  const onSubmit = (data: ForgotPasswordFormData) => {
+    forgotPassword(data, {
+      onSuccess: () => {
+        setIsSubmitted(true);
+      },
+    });
   };
 
   if (isSubmitted) {

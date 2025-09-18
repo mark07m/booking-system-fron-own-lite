@@ -3,28 +3,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/src/shared/ui/Button";
 import { Input } from "@/src/shared/ui/Input";
 import { Label } from "@/src/shared/ui/Label";
-import { useLoginMutation } from "@/src/features/auth/model/useLoginMutation";
+import { resetPasswordSchema, type ResetPasswordFormData } from "../model/auth.schemas";
+import { useResetPasswordMutation } from "../model/useResetPasswordMutation";
 import Link from "next/link";
 
-const resetPasswordSchema = z.object({
-  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Пароли не совпадают",
-  path: ["confirmPassword"],
-});
-
-type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
-
 export function ResetPasswordForm() {
-  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { login } = useLoginMutation();
+  const { resetPassword, isLoading, error } = useResetPasswordMutation();
 
   const {
     register,
@@ -34,23 +22,18 @@ export function ResetPasswordForm() {
     resolver: zodResolver(resetPasswordSchema),
   });
 
-  const onSubmit = async (data: ResetPasswordFormData) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      // In a real app, this would call reset password API
-      console.log("Reset password data:", data);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setIsSubmitted(true);
-    } catch (err: any) {
-      setError(err.message || "Ошибка сброса пароля");
-    } finally {
-      setIsLoading(false);
-    }
+  const onSubmit = (data: ResetPasswordFormData) => {
+    // Get token from URL params (in real app)
+    const token = new URLSearchParams(window.location.search).get('token') || '';
+    
+    resetPassword({
+      ...data,
+      token,
+    }, {
+      onSuccess: () => {
+        setIsSubmitted(true);
+      },
+    });
   };
 
   if (isSubmitted) {
