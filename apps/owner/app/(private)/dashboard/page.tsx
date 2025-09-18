@@ -1,7 +1,7 @@
-import { PageHeader } from "@/src/shared/components/PageHeader";
-import { StatsCards } from "@/src/widgets/StatsCards";
-import { RecentBookings } from "@/src/widgets/RecentBookings";
-import { Button } from "@/src/shared/ui/Button";
+import { PageHeader } from "@/shared/components/PageHeader";
+import { StatsCards } from "@/widgets/StatsCards";
+import { RecentBookings } from "@/widgets/RecentBookings";
+import { Button } from "@/shared/ui/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
 export default function DashboardPage() {

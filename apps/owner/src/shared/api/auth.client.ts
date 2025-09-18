@@ -9,7 +9,7 @@ import {
   ChangePasswordRequest,
   User,
   ApiResponse,
-} from "@/src/shared/types/api.types";
+} from "@shared/types/api.types";
 
 export const authClient = {
   // Login

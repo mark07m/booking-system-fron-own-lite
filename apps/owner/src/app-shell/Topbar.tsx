@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/src/shared/ui/Button";
-import { useAuthStore } from "@/src/shared/state/auth.store";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { Button } from "@shared/ui/Button";
+import { useAuthStore } from "@shared/state/auth.store";
+import { useUIStore } from "@shared/state/ui.store";
 import { 
   Bars3Icon, 
   BellIcon, 
@@ -15,7 +15,7 @@ import {
   ArrowRightOnRectangleIcon,
   ChevronDownIcon
 } from "@heroicons/react/24/outline";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@shared/utils/cn";
 
 interface TopbarProps {
   onMenuClick: () => void;

@@ -1,9 +1,9 @@
 "use client";
 
-import { useAuth } from "@/src/features/auth";
+import { useAuth } from "@/features/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/src/shared/state/auth.store";
+import { useAuthStore } from "@/shared/state/auth.store";
 
 export default function PrivateLayout({
   children,

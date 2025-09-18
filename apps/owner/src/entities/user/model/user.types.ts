@@ -1,4 +1,4 @@
-import { BaseEntity } from "@/src/shared/types/api.types";
+import { BaseEntity } from "@shared/types/api.types";
 
 export interface User extends BaseEntity {
   email: string;

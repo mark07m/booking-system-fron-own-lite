@@ -1,13 +1,13 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { resourcesClient } from "@/src/shared/api/resources.client";
+import { resourcesClient } from "@shared/api/resources.client";
 import { 
   Resource, 
   CreateResourceRequest, 
   UpdateResourceRequest, 
   PaginationParams 
-} from "@/src/shared/types/api.types";
+} from "@shared/types/api.types";
 
 // Query keys
 export const resourceKeys = {

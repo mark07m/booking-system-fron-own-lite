@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/src/shared/ui/Button";
-import { Select } from "@/src/shared/ui/Select";
+import { Button } from "@/shared/ui/Button";
+import { Select } from "@/shared/ui/Select";
 
 export function DashboardFilters() {
   const [status, setStatus] = useState("");

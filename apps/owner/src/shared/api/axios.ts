@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { API_BASE_URL } from "@/src/shared/config/constants";
-import { ApiResponse, ApiError } from "@/src/shared/types/api.types";
+import { API_BASE_URL } from "@shared/config/constants";
+import { ApiResponse, ApiError } from "@shared/types/api.types";
 
 // Create axios instance with base configuration
 export const apiClient: AxiosInstance = axios.create({

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { useUIStore } from "@shared/state/ui.store";
 import { XMarkIcon, CheckCircleIcon, ExclamationTriangleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 
 const iconMap = {

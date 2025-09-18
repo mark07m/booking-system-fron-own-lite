@@ -6,8 +6,8 @@ import {
   UsersIcon, 
   ClockIcon 
 } from "@heroicons/react/24/outline";
-import { useDashboardStats } from "@/src/shared/hooks/useStats";
-import { formatCurrency } from "@/src/shared/utils/formatters";
+import { useDashboardStats } from "@shared/hooks/useStats";
+import { formatCurrency } from "@shared/utils/formatters";
 
 export function StatsCards() {
   const { data: stats, isLoading, error } = useDashboardStats();

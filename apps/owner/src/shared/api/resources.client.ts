@@ -8,7 +8,7 @@ import {
   PaginatedResponse,
   ApiResponse,
   PaginationParams,
-} from "@/src/shared/types/api.types";
+} from "@shared/types/api.types";
 
 export const resourcesClient = {
   // Get resources list

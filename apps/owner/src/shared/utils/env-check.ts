@@ -1,4 +1,4 @@
-import { env, publicEnv } from "@/src/shared/config/env";
+import { env, publicEnv } from "@shared/config/env";
 
 /**
  * Utility functions for environment variable validation and checking

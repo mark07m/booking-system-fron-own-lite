@@ -1,8 +1,8 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { authClient, ForgotPasswordRequest } from "@/src/shared/api/auth.client";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { authClient, ForgotPasswordRequest } from "@shared/api/auth.client";
+import { useUIStore } from "@shared/state/ui.store";
 
 export function useForgotPasswordMutation() {
   const { addNotification } = useUIStore();

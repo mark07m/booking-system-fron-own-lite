@@ -1,8 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { statsClient } from "@/src/shared/api/stats.client";
-import { DashboardStats, BookingStats, RevenueStats } from "@/src/shared/types/api.types";
+import { statsClient } from "@shared/api/stats.client";
+import { DashboardStats, BookingStats, RevenueStats } from "@shared/types/api.types";
 
 // Query keys
 export const statsKeys = {

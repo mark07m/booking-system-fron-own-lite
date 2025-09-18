@@ -1,4 +1,4 @@
-import { ResetPasswordForm } from "@/src/features/auth";
+import { ResetPasswordForm } from "@features/auth";
 
 export default function ResetPasswordPage() {
   return (

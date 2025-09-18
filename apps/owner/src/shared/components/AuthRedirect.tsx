@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/src/shared/state/auth.store";
+import { useAuthStore } from "@shared/state/auth.store";
 
 interface AuthRedirectProps {
   children: React.ReactNode;

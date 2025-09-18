@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/src/shared/ui/Button";
-import { formatDateTime, formatCurrency } from "@/src/shared/utils/formatters";
-import { useBookings } from "@/src/shared/hooks/useBookings";
-import { useUIStore } from "@/src/shared/state/ui.store";
-import { Modal } from "@/src/shared/components/Modal";
+import { Button } from "@shared/ui/Button";
+import { formatDateTime, formatCurrency } from "@shared/utils/formatters";
+import { useBookings } from "@shared/hooks/useBookings";
+import { useUIStore } from "@shared/state/ui.store";
+import { Modal } from "@shared/components/Modal";
 
 const statusLabels = {
   pending: "Ожидает",

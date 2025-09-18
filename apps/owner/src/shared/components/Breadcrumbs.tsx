@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@shared/utils/cn";
 
 interface BreadcrumbItem {
   name: string;

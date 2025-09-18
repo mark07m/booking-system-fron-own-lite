@@ -1,14 +1,14 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { bookingsClient } from "@/src/shared/api/bookings.client";
+import { bookingsClient } from "@shared/api/bookings.client";
 import { 
   Booking, 
   CreateBookingRequest, 
   UpdateBookingRequest, 
   BookingFilters,
   PaginatedResponse 
-} from "@/src/shared/types/api.types";
+} from "@shared/types/api.types";
 
 // Query keys
 export const bookingKeys = {

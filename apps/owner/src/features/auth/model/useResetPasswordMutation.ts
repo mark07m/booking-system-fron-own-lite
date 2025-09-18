@@ -2,8 +2,8 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { authClient, ResetPasswordRequest } from "@/src/shared/api/auth.client";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { authClient, ResetPasswordRequest } from "@shared/api/auth.client";
+import { useUIStore } from "@shared/state/ui.store";
 
 export function useResetPasswordMutation() {
   const router = useRouter();

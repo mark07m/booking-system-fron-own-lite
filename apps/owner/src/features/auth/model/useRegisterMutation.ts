@@ -2,9 +2,9 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { authClient, RegisterRequest } from "@/src/shared/api/auth.client";
-import { useAuthStore } from "@/src/shared/state/auth.store";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { authClient, RegisterRequest } from "@shared/api/auth.client";
+import { useAuthStore } from "@shared/state/auth.store";
+import { useUIStore } from "@shared/state/ui.store";
 
 export function useRegisterMutation() {
   const router = useRouter();

@@ -6,7 +6,7 @@ import {
   RevenueStats,
   ApiResponse,
   PaginationParams,
-} from "@/src/shared/types/api.types";
+} from "@shared/types/api.types";
 
 export const statsClient = {
   // Get dashboard stats

@@ -2,8 +2,8 @@
 
 import { ReactNode } from "react";
 import { Breadcrumbs } from "./Breadcrumbs";
-import { Button } from "@/src/shared/ui/Button";
-import { cn } from "@/src/shared/utils/cn";
+import { Button } from "@shared/ui/Button";
+import { cn } from "@shared/utils/cn";
 
 interface PageHeaderProps {
   title: string;

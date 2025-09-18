@@ -1,3 +1,16 @@
 {
-  "extends": "../../packages/config/tsconfig/nextapp.json"
+  "extends": "../../packages/config/tsconfig/nextapp.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app-shell/*": ["src/app-shell/*"],
+      "@shared/*": ["src/shared/*"],
+      "@entities/*": ["src/entities/*"],
+      "@features/*": ["src/features/*"],
+      "@widgets/*": ["src/widgets/*"],
+      "@theme/*": ["../../packages/theme/src/*"],
+      "@config/*": ["../../packages/config/*"],
+      "@/*": ["src/*"]
+    }
+  }
 }

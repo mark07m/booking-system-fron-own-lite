@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/src/shared/ui/Button";
+import { Button } from "@/shared/ui/Button";
 import { HomeIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export default function NotFound() {

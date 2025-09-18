@@ -1,6 +1,6 @@
-import { apiClient } from "@/src/shared/api/axios";
-import { API_ENDPOINTS } from "@/src/shared/api/endpoints";
-import { PaginatedResponse, PaginationParams } from "@/src/shared/types/api.types";
+import { apiClient } from "@shared/api/axios";
+import { API_ENDPOINTS } from "@shared/api/endpoints";
+import { PaginatedResponse, PaginationParams } from "@shared/types/api.types";
 import { User, CreateUserRequest, UpdateUserRequest, UserFilters } from "./user.types";
 
 export const userApi = {

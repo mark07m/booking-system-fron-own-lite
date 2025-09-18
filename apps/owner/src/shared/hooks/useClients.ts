@@ -1,13 +1,13 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { clientsClient } from "@/src/shared/api/clients.client";
+import { clientsClient } from "@shared/api/clients.client";
 import { 
   Client, 
   CreateClientRequest, 
   UpdateClientRequest, 
   PaginationParams 
-} from "@/src/shared/types/api.types";
+} from "@shared/types/api.types";
 
 // Query keys
 export const clientKeys = {

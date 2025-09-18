@@ -1,4 +1,4 @@
-import { ApiError } from "@/src/shared/types/api.types";
+import { ApiError } from "@shared/types/api.types";
 
 /**
  * Utility functions for handling API errors

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@shared/utils/cn";
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {}

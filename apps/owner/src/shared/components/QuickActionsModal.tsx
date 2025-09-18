@@ -1,8 +1,8 @@
 "use client";
 
 import { Modal } from "./Modal";
-import { Button } from "@/src/shared/ui/Button";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { Button } from "@shared/ui/Button";
+import { useUIStore } from "@shared/state/ui.store";
 import { 
   PlusIcon,
   CalendarIcon,

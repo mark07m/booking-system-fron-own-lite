@@ -1,5 +1,5 @@
-import { PageHeader } from "@/src/shared/components/PageHeader";
-import { Button } from "@/src/shared/ui/Button";
+import { PageHeader } from "@/shared/components/PageHeader";
+import { Button } from "@/shared/ui/Button";
 import { PlusIcon, FunnelIcon } from "@heroicons/react/24/outline";
 
 export default function BookingsPage() {

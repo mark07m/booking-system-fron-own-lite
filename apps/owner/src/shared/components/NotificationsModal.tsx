@@ -1,8 +1,8 @@
 "use client";
 
 import { Modal } from "./Modal";
-import { useUIStore } from "@/src/shared/state/ui.store";
-import { formatDateTime } from "@/src/shared/utils/formatters";
+import { useUIStore } from "@shared/state/ui.store";
+import { formatDateTime } from "@shared/utils/formatters";
 import { 
   CheckCircleIcon, 
   ExclamationTriangleIcon, 

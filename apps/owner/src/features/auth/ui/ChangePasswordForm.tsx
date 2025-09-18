@@ -2,13 +2,13 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/src/shared/ui/Button";
-import { Input } from "@/src/shared/ui/Input";
-import { Label } from "@/src/shared/ui/Label";
+import { Button } from "@shared/ui/Button";
+import { Input } from "@shared/ui/Input";
+import { Label } from "@shared/ui/Label";
 import { changePasswordSchema, type ChangePasswordFormData } from "../model/auth.schemas";
 import { useMutation } from "@tanstack/react-query";
-import { authClient } from "@/src/shared/api/auth.client";
-import { useUIStore } from "@/src/shared/state/ui.store";
+import { authClient } from "@shared/api/auth.client";
+import { useUIStore } from "@shared/state/ui.store";
 
 export function ChangePasswordForm() {
   const { addNotification } = useUIStore();

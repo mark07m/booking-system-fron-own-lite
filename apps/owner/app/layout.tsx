@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppShell } from "@/src/app-shell/AppShell";
-import { EnvErrorBoundary } from "@/src/shared/components/EnvErrorBoundary";
-import { Providers } from "@/src/shared/providers/Providers";
+import { AppShell } from "@/app-shell/AppShell";
+import { EnvErrorBoundary } from "@/shared/components/EnvErrorBoundary";
+import { Providers } from "@/shared/providers/Providers";
 
 const inter = Inter({ 
   subsets: ["latin", "cyrillic"],

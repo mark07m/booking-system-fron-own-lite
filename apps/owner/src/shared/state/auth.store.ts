@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { User } from "@/src/shared/api/auth.client";
+import { User } from "@shared/api/auth.client";
 
 interface AuthState {
   user: User | null;

@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { cn } from "@/src/shared/utils/cn";
-import { Button } from "@/src/shared/ui/Button";
-import { useAuthStore } from "@/src/shared/state/auth.store";
+import { cn } from "@shared/utils/cn";
+import { Button } from "@shared/ui/Button";
+import { useAuthStore } from "@shared/state/auth.store";
 import { 
   HomeIcon, 
   CalendarIcon, 

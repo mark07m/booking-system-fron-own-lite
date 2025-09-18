@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/src/shared/ui/Button";
-import { Input } from "@/src/shared/ui/Input";
-import { Label } from "@/src/shared/ui/Label";
+import { Button } from "@shared/ui/Button";
+import { Input } from "@shared/ui/Input";
+import { Label } from "@shared/ui/Label";
 import { resetPasswordSchema, type ResetPasswordFormData } from "../model/auth.schemas";
 import { useResetPasswordMutation } from "../model/useResetPasswordMutation";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/src/shared/ui/Button";
+import { Button } from "@shared/ui/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
 export function DashboardHeader() {
