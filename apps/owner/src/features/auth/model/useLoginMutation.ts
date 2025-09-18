@@ -1,29 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { authClient, LoginRequest } from "@/src/shared/api/auth.client";
 import { useAuthStore } from "@/src/shared/state/auth.store";
 import { useUIStore } from "@/src/shared/state/ui.store";
 
 export function useLoginMutation() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  
   const router = useRouter();
   const { setUser } = useAuthStore();
   const { addNotification } = useUIStore();
+  const queryClient = useQueryClient();
 
-  const login = async (credentials: LoginRequest) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await authClient.login(credentials);
-      
+  const loginMutation = useMutation({
+    mutationFn: (credentials: LoginRequest) => authClient.login(credentials),
+    onSuccess: (response) => {
       // Store tokens
-      localStorage.setItem("auth_token", response.token);
-      localStorage.setItem("refresh_token", response.refreshToken);
+      authClient.storeAuthData(response);
       
       // Update auth store
       setUser(response.user);
@@ -37,35 +30,45 @@ export function useLoginMutation() {
       
       // Redirect to dashboard
       router.push("/dashboard");
-      
-    } catch (err: any) {
-      const errorMessage = err.response?.data?.message || "Ошибка входа";
-      setError(errorMessage);
+    },
+    onError: (error: any) => {
+      const errorMessage = error.message || "Ошибка входа";
       
       addNotification({
         type: "error",
         title: "Ошибка входа",
         message: errorMessage,
       });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+  });
 
-  const logout = async () => {
-    try {
-      await authClient.logout();
+  const logoutMutation = useMutation({
+    mutationFn: () => authClient.logout(),
+    onSuccess: () => {
+      // Clear auth data
+      authClient.clearAuthData();
       setUser(null);
+      
+      // Clear all queries
+      queryClient.clear();
+      
+      // Redirect to login
       router.push("/login");
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error("Logout error:", error);
-    }
-  };
+      // Still clear local state even if server logout fails
+      authClient.clearAuthData();
+      setUser(null);
+      queryClient.clear();
+      router.push("/login");
+    },
+  });
 
   return {
-    login,
-    logout,
-    isLoading,
-    error,
+    login: loginMutation.mutate,
+    logout: logoutMutation.mutate,
+    isLoading: loginMutation.isPending,
+    error: loginMutation.error?.message || null,
   };
 }
