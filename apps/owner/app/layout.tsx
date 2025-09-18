@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/app-shell/AppShell";
 import { EnvErrorBoundary } from "@/shared/components/EnvErrorBoundary";
+import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
 import { Providers } from "@/shared/providers/Providers";
 
 const inter = Inter({ 
@@ -76,7 +77,9 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <Providers>
           <EnvErrorBoundary>
-            <AppShell>{children}</AppShell>
+            <ErrorBoundary>
+              <AppShell>{children}</AppShell>
+            </ErrorBoundary>
           </EnvErrorBoundary>
         </Providers>
       </body>

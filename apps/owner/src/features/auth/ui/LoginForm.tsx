@@ -7,9 +7,12 @@ import { Input } from "@shared/ui/Input";
 import { Label } from "@shared/ui/Label";
 import { useLoginMutation } from "../model/useLoginMutation";
 import { loginSchema, type LoginFormData } from "../model/auth.schemas";
+import { PerformanceMonitor } from "@shared/utils/performance";
+import { useHydration } from "@shared/utils/ssr";
 
 export function LoginForm() {
   const { login, isLoading, error } = useLoginMutation();
+  const isHydrated = useHydration();
   
   const {
     register,
@@ -23,7 +26,9 @@ export function LoginForm() {
   });
 
   const onSubmit = (data: LoginFormData) => {
-    login(data);
+    PerformanceMonitor.measureAsync("login-submit", async () => {
+      await login(data);
+    });
   };
 
   return (

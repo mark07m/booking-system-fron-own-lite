@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { API_BASE_URL } from "@shared/config/constants";
 import { ApiResponse, ApiError } from "@shared/types/api.types";
+import { ClientCookieManager } from "@shared/utils/cookies";
 
 // Create axios instance with base configuration
 export const apiClient: AxiosInstance = axios.create({
@@ -10,19 +11,19 @@ export const apiClient: AxiosInstance = axios.create({
     "Content-Type": "application/json",
     "Accept": "application/json",
   },
-  withCredentials: true, // Include cookies in requests
+  withCredentials: true, // Include httpOnly cookies in requests
 });
 
 // Request interceptor
 apiClient.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    // Add auth token if available (for client-side requests)
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("auth_token");
-      if (token) {
+    // Add CSRF token for state-changing requests
+    if (typeof window !== "undefined" && ["POST", "PUT", "PATCH", "DELETE"].includes(config.method?.toUpperCase() || "")) {
+      const csrfToken = ClientCookieManager.getCookie("csrf_token");
+      if (csrfToken) {
         config.headers = {
           ...config.headers,
-          Authorization: `Bearer ${token}`,
+          "X-CSRF-Token": csrfToken,
         };
       }
     }
@@ -54,30 +55,18 @@ apiClient.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
     
-    // Handle 401 Unauthorized
+    // Handle 401 Unauthorized - token refresh is now handled by httpOnly cookies
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       
       try {
-        // Attempt to refresh token
-        const refreshToken = localStorage.getItem("refresh_token");
-        if (refreshToken) {
-          const refreshResponse = await axios.post(`${API_BASE_URL}/auth/refresh`, {
-            refreshToken,
-          });
-          
-          const { token, refreshToken: newRefreshToken } = refreshResponse.data;
-          
-          // Update tokens
-          localStorage.setItem("auth_token", token);
-          localStorage.setItem("refresh_token", newRefreshToken);
-          
-          // Retry original request with new token
-          originalRequest.headers = {
-            ...originalRequest.headers,
-            Authorization: `Bearer ${token}`,
-          };
-          
+        // Attempt to refresh token using httpOnly cookies
+        const refreshResponse = await axios.post(`${API_BASE_URL}/auth/refresh`, {}, {
+          withCredentials: true, // Include httpOnly cookies
+        });
+        
+        // If refresh successful, retry original request
+        if (refreshResponse.status === 200) {
           return apiClient(originalRequest);
         }
       } catch (refreshError) {
@@ -88,9 +77,31 @@ apiClient.interceptors.response.use(
       }
     }
     
-    // Handle other errors
+    // Handle 403 Forbidden - CSRF token might be invalid
+    if (error.response?.status === 403) {
+      console.error("CSRF token validation failed or insufficient permissions");
+      // Could implement CSRF token refresh here
+    }
+    
+    // Handle 429 Too Many Requests - Rate limiting
+    if (error.response?.status === 429) {
+      const retryAfter = error.response.headers["retry-after"];
+      console.warn(`Rate limited. Retry after ${retryAfter} seconds`);
+    }
+    
+    // Handle 5xx Server Errors
     if (error.response?.status >= 500) {
       console.error("Server error:", error.response.status, error.response.data);
+      
+      // Log error details for monitoring
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error details:", {
+          url: error.config?.url,
+          method: error.config?.method,
+          status: error.response.status,
+          data: error.response.data,
+        });
+      }
     } else if (error.response?.status >= 400) {
       console.error("Client error:", error.response.status, error.response.data);
     }
@@ -115,9 +126,8 @@ function generateRequestId(): string {
 // Helper function to handle authentication failure
 function handleAuthFailure(): void {
   if (typeof window !== "undefined") {
-    // Clear auth data
-    localStorage.removeItem("auth_token");
-    localStorage.removeItem("refresh_token");
+    // Clear any client-side auth data
+    ClientCookieManager.deleteCookie("csrf_token");
     
     // Redirect to login
     window.location.href = "/login";

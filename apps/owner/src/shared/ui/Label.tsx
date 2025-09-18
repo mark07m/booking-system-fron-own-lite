@@ -1,23 +1,23 @@
-import { forwardRef } from "react";
-import { cn } from "@shared/utils/cn";
+// TODO: Move to packages/ui/ after theme tokens are finalized
+// This is a temporary placeholder to prevent import errors
 
-export interface LabelProps
-  extends React.LabelHTMLAttributes<HTMLLabelElement> {}
+import React from "react";
 
-const Label = forwardRef<HTMLLabelElement, LabelProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <label
-        ref={ref}
-        className={cn(
-          "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-          className
-        )}
-        {...props}
-      />
-    );
-  }
-);
-Label.displayName = "Label";
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  children: React.ReactNode;
+}
 
-export { Label };
+export function Label({ 
+  className = "", 
+  children, 
+  ...props 
+}: LabelProps) {
+  return (
+    <label
+      className={`block text-sm font-medium text-gray-700 ${className}`}
+      {...props}
+    >
+      {children}
+    </label>
+  );
+}

@@ -2,13 +2,16 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuthStore } from "@shared/state/auth.store";
 
 interface ProvidersProps {
   children: React.ReactNode;
 }
 
 export function Providers({ children }: ProvidersProps) {
+  const { initializeAuth } = useAuthStore();
+  
   // Create a new QueryClient instance for each app instance
   const [queryClient] = useState(
     () =>
@@ -35,6 +38,11 @@ export function Providers({ children }: ProvidersProps) {
         },
       })
   );
+
+  // Initialize authentication on app start
+  useEffect(() => {
+    initializeAuth();
+  }, [initializeAuth]);
 
   return (
     <QueryClientProvider client={queryClient}>

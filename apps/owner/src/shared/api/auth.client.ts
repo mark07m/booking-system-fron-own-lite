@@ -46,16 +46,11 @@ export const authClient = {
     }
   },
 
-  // Refresh token
+  // Refresh token - now handled by httpOnly cookies
   async refreshToken(): Promise<LoginResponse> {
-    const refreshToken = localStorage.getItem("refresh_token");
-    if (!refreshToken) {
-      throw new Error("No refresh token available");
-    }
-
     const response = await apiClient.post<ApiResponse<LoginResponse>>(
       API_ENDPOINTS.AUTH.REFRESH,
-      { refreshToken }
+      {} // No body needed, refresh token is in httpOnly cookie
     );
     return response.data.data;
   },
@@ -86,28 +81,17 @@ export const authClient = {
     await apiClient.post(API_ENDPOINTS.AUTH.VERIFY_EMAIL, { token });
   },
 
-  // Utility functions
+  // Utility functions - simplified for httpOnly cookies approach
   isAuthenticated(): boolean {
-    if (typeof window === "undefined") return false;
-    return !!localStorage.getItem("auth_token");
+    // Authentication state is now managed by the server via httpOnly cookies
+    // This will be determined by the server response to /auth/me
+    return false; // Will be updated by the auth store
   },
 
-  getToken(): string | null {
-    if (typeof window === "undefined") return null;
-    return localStorage.getItem("auth_token");
-  },
-
-  getRefreshToken(): string | null {
-    if (typeof window === "undefined") return null;
-    return localStorage.getItem("refresh_token");
-  },
-
-  // Store auth data
+  // Store auth data - simplified for httpOnly cookies
   storeAuthData(authData: LoginResponse): void {
+    // Only store user data, tokens are handled by httpOnly cookies
     if (typeof window === "undefined") return;
-    
-    localStorage.setItem("auth_token", authData.token);
-    localStorage.setItem("refresh_token", authData.refreshToken);
     localStorage.setItem("user_data", JSON.stringify(authData.user));
   },
 
@@ -122,38 +106,6 @@ export const authClient = {
   // Clear all auth data
   clearAuthData(): void {
     if (typeof window === "undefined") return;
-    
-    localStorage.removeItem("auth_token");
-    localStorage.removeItem("refresh_token");
     localStorage.removeItem("user_data");
-  },
-
-  // Check if token is expired
-  isTokenExpired(): boolean {
-    const token = this.getToken();
-    if (!token) return true;
-
-    try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      const currentTime = Date.now() / 1000;
-      return payload.exp < currentTime;
-    } catch (error) {
-      console.error("Error parsing token:", error);
-      return true;
-    }
-  },
-
-  // Get token expiration time
-  getTokenExpiration(): Date | null {
-    const token = this.getToken();
-    if (!token) return null;
-
-    try {
-      const payload = JSON.parse(atob(token.split(".")[1]));
-      return new Date(payload.exp * 1000);
-    } catch (error) {
-      console.error("Error parsing token expiration:", error);
-      return null;
-    }
   },
 };
