@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [19.9.0]
     
     steps:
       - name: Checkout code
@@ -26,9 +26,9 @@ jobs:
           cache: 'npm'
           
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 8.0.0
           
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -46,7 +46,7 @@ jobs:
         run: pnpm run build
         
       - name: Upload build artifacts
-        if: matrix.node-version == 20
+        if: matrix.node-version == 19.9.0
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
@@ -68,13 +68,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 19.9.0
           cache: 'npm'
           
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 8.0.0
           
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
