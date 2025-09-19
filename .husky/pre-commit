@@ -1,5 +1,24 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+echo "🔍 Running pre-commit checks..."
+
+# Запуск lint-staged для проверки измененных файлов
 npx lint-staged
-npm run lint:fix && npm run format
+
+# Дополнительные проверки
+echo "🔧 Running additional checks..."
+
+# Проверка типов
+echo "📝 Type checking..."
+pnpm run typecheck
+
+# Проверка форматирования
+echo "🎨 Checking code formatting..."
+pnpm run format:check
+
+# Проверка линтера
+echo "🧹 Running linter..."
+pnpm run lint
+
+echo "✅ Pre-commit checks completed successfully!"
