@@ -1,8 +1,8 @@
 // Server-side authentication utilities for real backend integration
 
 import { NextRequest } from "next/server";
-import { ServerCookieManager } from "@shared/utils/cookies";
-import { env } from "@shared/config/env";
+import { ServerCookieManager } from "@shared/utils/cookies.server";
+import { publicEnv } from "@shared/config/env";
 
 export interface User {
   id: string;
@@ -27,7 +27,7 @@ export interface AuthSession {
  * This will integrate with your real backend API
  */
 export class ServerAuthService {
-  private static readonly API_BASE_URL = env.NEXT_PUBLIC_API_BASE_URL;
+  private static readonly API_BASE_URL = publicEnv.NEXT_PUBLIC_API_BASE_URL;
 
   /**
    * Verify JWT token with backend

@@ -1,11 +1,11 @@
 "use client";
 
 import { Modal } from "./Modal";
-import { useUIStore } from "@shared/state/ui.store";
-import { formatDateTime } from "@shared/utils/formatters";
+import { useUIStore } from "@/shared/state/ui.store";
+import { formatDateTime } from "@/shared/utils/formatters";
 import { 
   CheckCircleIcon, 
-  ExclamationTriangleIcon, 
+  ExclaimationTriangleIcon, 
   InformationCircleIcon, 
   XCircleIcon 
 } from "@heroicons/react/24/outline";
@@ -13,7 +13,7 @@ import {
 const iconMap = {
   success: CheckCircleIcon,
   error: XCircleIcon,
-  warning: ExclamationTriangleIcon,
+  warning: ExclaimationTriangleIcon,
   info: InformationCircleIcon,
 };
 

@@ -1,4 +1,4 @@
-import { type VariantProps, cva } from "class-variance-authority";
+import { type VariantProps } from "class-variance-authority";
 
 /**
  * Utility function to create component variants using class-variance-authority

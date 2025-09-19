@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { generateCSRFToken, validateCSRFToken } from "@shared/utils/cookies";
+import { generateCSRFToken, validateCSRFToken } from "@/shared/utils/cookies";
 
 // Define public routes that don't require authentication
 const publicRoutes = [

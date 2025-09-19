@@ -2,6 +2,7 @@
   "name": "@booking-system/ui",
   "version": "1.0.0",
   "description": "Booking System UI Library - Custom component library built on top of chosen UI kit",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -18,8 +19,8 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18 <20 || ^19",
+    "react-dom": ">=18 <20 || ^19"
   },
   "dependencies": {
     "@booking-system/theme": "workspace:*",

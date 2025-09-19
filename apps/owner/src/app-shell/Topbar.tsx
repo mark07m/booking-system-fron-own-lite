@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Button } from "@shared/ui/Button";
-import { useAuthStore } from "@shared/state/auth.store";
-import { useUIStore } from "@shared/state/ui.store";
+import { Button } from "@/shared/ui/Button";
+import { useAuthStore } from "@/shared/state/auth.store";
+import { useUIStore } from "@/shared/state/ui.store";
 import { 
   Bars3Icon, 
   BellIcon, 
@@ -15,7 +15,7 @@ import {
   ArrowRightOnRectangleIcon,
   ChevronDownIcon
 } from "@heroicons/react/24/outline";
-import { cn } from "@shared/utils/cn";
+import { cn } from "@/shared/utils/cn";
 
 interface TopbarProps {
   onMenuClick: () => void;
@@ -54,14 +54,14 @@ export function Topbar({ onMenuClick }: TopbarProps) {
       <div className="flex h-16 items-center justify-between px-4 lg:px-6">
         {/* Left section */}
         <div className="flex items-center">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onMenuClick}
-            className="mr-2 lg:hidden"
-          >
-            <Bars3Icon className="h-5 w-5" />
-          </Button>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={onMenuClick}
+              className="mr-2 lg:hidden overflow-hidden"
+            >
+              <Bars3Icon className="h-4 w-4 max-w-full max-h-full" />
+            </Button>
           
           {/* Page title */}
           <div className="hidden sm:block">
@@ -75,7 +75,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         <div className="flex-1 max-w-lg mx-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="h-4 w-4 max-w-full max-h-full text-gray-400" />
             </div>
             <input
               type="text"
@@ -93,9 +93,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
               variant="ghost" 
               size="sm"
               onClick={() => openModal("notifications")}
-              className="relative"
+              className="relative overflow-hidden"
             >
-              <BellIcon className="h-5 w-5" />
+              <BellIcon className="h-4 w-4 max-w-full max-h-full" />
               {unreadNotifications > 0 && (
                 <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
                   {unreadNotifications > 9 ? "9+" : unreadNotifications}
@@ -109,9 +109,9 @@ export function Topbar({ onMenuClick }: TopbarProps) {
             variant="ghost" 
             size="sm"
             onClick={() => openModal("quick-actions")}
-            className="hidden sm:flex"
+            className="hidden sm:flex overflow-hidden"
           >
-            <Cog6ToothIcon className="h-5 w-5" />
+            <Cog6ToothIcon className="h-4 w-4 max-w-full max-h-full" />
           </Button>
           
           {/* User profile dropdown */}
@@ -124,7 +124,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
             >
               <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
                 <span className="text-white font-medium text-sm">
-                  {user?.name?.charAt(0) || "A"}
+                  A
                 </span>
               </div>
               <div className="hidden sm:block text-left">
@@ -186,7 +186,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         <div className="lg:hidden border-t border-gray-200 p-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="h-4 w-4 max-w-full max-h-full text-gray-400" />
             </div>
             <input
               type="text"

@@ -1,6 +1,6 @@
 // Server-side rendered stats component
 import { serverFetch } from "@shared/utils/ssr";
-import { ServerCookieManager } from "@shared/utils/cookies";
+import { ServerCookieManager } from "@shared/utils/cookies.server";
 import { StatsCards } from "./StatsCards";
 
 interface StatsData {

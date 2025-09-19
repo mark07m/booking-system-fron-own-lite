@@ -1,8 +1,8 @@
 "use client";
 
 import { Modal } from "./Modal";
-import { Button } from "@shared/ui/Button";
-import { useUIStore } from "@shared/state/ui.store";
+import { Button } from "@/shared/ui/Button";
+import { useUIStore } from "@/shared/state/ui.store";
 import { 
   PlusIcon,
   CalendarIcon,
@@ -86,7 +86,7 @@ export function QuickActionsModal() {
             >
               <div className="flex items-start">
                 <div className={`flex-shrink-0 p-2 rounded-lg ${action.color} text-white`}>
-                  <action.icon className="h-5 w-5" />
+                  <action.icon className="h-4 w-4" />
                 </div>
                 <div className="ml-3 flex-1">
                   <h3 className="text-sm font-medium text-gray-900 group-hover:text-gray-700">

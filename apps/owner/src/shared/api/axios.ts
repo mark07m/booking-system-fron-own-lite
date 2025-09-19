@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { API_BASE_URL } from "@shared/config/constants";
-import { ApiResponse, ApiError } from "@shared/types/api.types";
-import { ClientCookieManager } from "@shared/utils/cookies";
+import { API_BASE_URL } from "@/shared/config/constants";
+import { ApiResponse, ApiError } from "@/shared/types/api.types";
+import { ClientCookieManager } from "@/shared/utils/cookies";
 
 // Create axios instance with base configuration
 export const apiClient: AxiosInstance = axios.create({

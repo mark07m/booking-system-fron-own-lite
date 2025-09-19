@@ -1,7 +1,8 @@
-import { lightTheme, darkTheme } from "./presets/light";
+import { lightTheme } from "./presets/light";
+import { darkTheme } from "./presets/dark";
 
 // Type for theme structure
-type Theme = typeof lightTheme;
+type Theme = typeof lightTheme | typeof darkTheme;
 
 // Helper function to flatten nested objects and create CSS variables
 function flattenToCSSVars(
@@ -35,8 +36,8 @@ export const darkThemeCSSVars = flattenToCSSVars(darkTheme);
 // Generate CSS custom properties string
 export function generateCSSVars(theme: Theme): string {
   const vars = flattenToCSSVars(theme);
-  return Object.entries(vars)
-    .map(([key, value]) => `  ${key}: ${value};`)
+  return Object.keys(vars)
+    .map((key) => `  ${key}: ${vars[key]};`)
     .join("\n");
 }
 

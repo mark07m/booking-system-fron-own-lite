@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/shared/ui/Button";
 import { HomeIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
@@ -17,12 +19,12 @@ export default function NotFound() {
         </div>
         
         <div className="space-y-4">
-          <Button asChild>
-            <Link href="/dashboard">
+          <Link href="/dashboard">
+            <Button>
               <HomeIcon className="h-4 w-4 mr-2" />
               На главную
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           
           <div>
             <Button variant="outline" onClick={() => window.history.back()}>

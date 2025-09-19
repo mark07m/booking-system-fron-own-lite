@@ -1,4 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+// Временно импортируем напрямую из файлов темы
+import { lightTheme } from "@booking-system/theme/src/presets/light";
+import { darkTheme } from "@booking-system/theme/src/presets/dark";
 
 type Theme = "light" | "dark" | "system";
 
@@ -6,6 +9,7 @@ interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   resolvedTheme: "light" | "dark";
+  themeConfig: typeof lightTheme | typeof darkTheme;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -16,7 +20,7 @@ interface ThemeProviderProps {
   storageKey?: string;
 }
 
-export function ThemeProvider({
+function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "ui-theme",
@@ -50,6 +54,9 @@ export function ThemeProvider({
     }
   }, [theme]);
 
+  // Get the current theme configuration
+  const themeConfig = resolvedTheme === "dark" ? darkTheme : lightTheme;
+
   const value = {
     theme,
     setTheme: (newTheme: Theme) => {
@@ -57,6 +64,7 @@ export function ThemeProvider({
       setTheme(newTheme);
     },
     resolvedTheme,
+    themeConfig,
   };
 
   return (
@@ -66,4 +74,4 @@ export function ThemeProvider({
   );
 }
 
-export { ThemeContext };
+export { ThemeContext, ThemeProvider };

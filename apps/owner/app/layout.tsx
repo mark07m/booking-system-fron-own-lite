@@ -7,9 +7,10 @@ import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
 import { Providers } from "@/shared/providers/Providers";
 
 const inter = Inter({ 
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {

@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { cn } from "@shared/utils/cn";
-import { Button } from "@shared/ui/Button";
-import { useAuthStore } from "@shared/state/auth.store";
+import { cn } from "@/shared/utils/cn";
+import { Button } from "@/shared/ui/Button";
+import { useAuthStore } from "@/shared/state/auth.store";
 import { 
   HomeIcon, 
   CalendarIcon, 
@@ -116,7 +116,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               onClick={onClose}
               className="lg:hidden"
             >
-              <XMarkIcon className="h-5 w-5" />
+              <XMarkIcon className="h-4 w-4 max-w-full max-h-full" />
             </Button>
           </div>
           
@@ -142,12 +142,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                       }
                     }}
                   >
-                    <item.icon 
-                      className={cn(
-                        "mr-3 h-5 w-5 flex-shrink-0",
-                        isActive ? "text-blue-700" : "text-gray-400 group-hover:text-gray-500"
-                      )} 
-                    />
+                    <div className="flex-shrink-0 overflow-hidden">
+                      <item.icon 
+                        className={cn(
+                          "h-4 w-4 max-w-full max-h-full",
+                          isActive ? "text-blue-700" : "text-gray-400 group-hover:text-gray-500"
+                        )} 
+                      />
+                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="truncate">{item.name}</div>
                       <div className="text-xs text-gray-500 truncate">
@@ -182,12 +184,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                     }}
                   >
                     <div className="flex items-center">
-                      <item.icon 
-                        className={cn(
-                          "mr-3 h-4 w-4 flex-shrink-0",
-                          isActive ? "text-blue-700" : "text-gray-400 group-hover:text-gray-500"
-                        )} 
-                      />
+                      <div className="flex-shrink-0 overflow-hidden mr-3">
+                        <item.icon 
+                          className={cn(
+                            "h-3.5 w-3.5 max-w-full max-h-full",
+                            isActive ? "text-blue-700" : "text-gray-400 group-hover:text-gray-500"
+                          )} 
+                        />
+                      </div>
                       {item.name}
                     </div>
                     {item.count && (
@@ -206,7 +210,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             <div className="flex items-center">
               <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
                 <span className="text-white font-medium text-sm">
-                  {user?.name?.charAt(0) || "A"}
+                  A
                 </span>
               </div>
               <div className="ml-3 flex-1 min-w-0">

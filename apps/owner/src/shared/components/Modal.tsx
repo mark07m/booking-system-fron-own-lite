@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useUIStore } from "@shared/state/ui.store";
+import { useUIStore } from "@/shared/state/ui.store";
 
 interface ModalProps {
   id: string;
@@ -76,7 +76,7 @@ export function Modal({
                       onClick={handleClose}
                     >
                       <span className="sr-only">Закрыть</span>
-                      <XMarkIcon className="h-6 w-6" />
+                      <XMarkIcon className="h-5 w-5" />
                     </button>
                   )}
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { publicEnv } from "@/shared/config/env";
 
 interface EnvErrorBoundaryProps {
   children: React.ReactNode;
@@ -13,22 +14,27 @@ export function EnvErrorBoundary({ children }: EnvErrorBoundaryProps) {
     // Check if we're on the client side
     if (typeof window === "undefined") return;
 
-    // Check for missing public environment variables
-    const requiredPublicVars = [
-      "NEXT_PUBLIC_API_BASE_URL",
-      "NEXT_PUBLIC_APP_NAME",
-      "NEXT_PUBLIC_APP_URL",
-    ];
+    try {
+      // Use the validated environment variables instead of process.env
+      const requiredVars = [
+        { name: "NEXT_PUBLIC_API_BASE_URL", value: publicEnv.NEXT_PUBLIC_API_BASE_URL },
+        { name: "NEXT_PUBLIC_APP_NAME", value: publicEnv.NEXT_PUBLIC_APP_NAME },
+        { name: "NEXT_PUBLIC_APP_URL", value: publicEnv.NEXT_PUBLIC_APP_URL },
+      ];
 
-    const missingVars = requiredPublicVars.filter((varName) => {
-      const value = process.env[varName];
-      return !value || value.trim() === "";
-    });
+      const missingVars = requiredVars.filter(({ value }) => {
+        return !value || value.trim() === "";
+      });
 
-    if (missingVars.length > 0) {
-      setEnvError(
-        `Missing required environment variables: ${missingVars.join(", ")}`
-      );
+      if (missingVars.length > 0) {
+        setEnvError(
+          `Missing required environment variables: ${missingVars.map(v => v.name).join(", ")}`
+        );
+      }
+    } catch (error) {
+      // If there's an error parsing env variables, show a generic error
+      console.error("Environment configuration error:", error);
+      setEnvError("Failed to load environment configuration");
     }
   }, []);
 
@@ -37,9 +43,9 @@ export function EnvErrorBoundary({ children }: EnvErrorBoundaryProps) {
       <div className="min-h-screen flex items-center justify-center bg-red-50">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
           <div className="flex items-center mb-4">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 w-8 h-8 overflow-hidden">
               <svg
-                className="h-8 w-8 text-red-400"
+                className="h-8 w-8 max-w-full max-h-full text-red-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -52,7 +58,7 @@ export function EnvErrorBoundary({ children }: EnvErrorBoundaryProps) {
                 />
               </svg>
             </div>
-            <div className="ml-3">
+            <div className="ml-3 flex-1 min-w-0">
               <h3 className="text-lg font-medium text-red-800">
                 Environment Configuration Error
               </h3>

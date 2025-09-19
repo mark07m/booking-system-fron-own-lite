@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ServerCookieManager } from "@shared/utils/cookies";
+import { ServerCookieManager } from "@/shared/utils/cookies.server";
 
 export async function POST(request: NextRequest) {
   try {

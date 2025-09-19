@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getSession, checkPermissions, checkRole } from "./server-auth";
-import { ServerCookieManager } from "@shared/utils/cookies";
+import { ServerCookieManager } from "@shared/utils/cookies.server";
 
 export interface RouteGuardConfig {
   requireAuth?: boolean;

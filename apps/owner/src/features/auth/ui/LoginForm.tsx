@@ -2,13 +2,13 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@shared/ui/Button";
-import { Input } from "@shared/ui/Input";
-import { Label } from "@shared/ui/Label";
+import { Button } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
+import { Label } from "@/shared/ui/Label";
 import { useLoginMutation } from "../model/useLoginMutation";
 import { loginSchema, type LoginFormData } from "../model/auth.schemas";
-import { PerformanceMonitor } from "@shared/utils/performance";
-import { useHydration } from "@shared/utils/ssr";
+import { PerformanceMonitor } from "@/shared/utils/performance";
+import { useHydration } from "@/shared/utils/ssr";
 
 export function LoginForm() {
   const { login, isLoading, error } = useLoginMutation();

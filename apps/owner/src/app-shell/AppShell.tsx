@@ -3,11 +3,11 @@
 import { useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { Topbar } from "./Topbar";
-import { useUIStore } from "@shared/state/ui.store";
-import { NotificationContainer } from "@shared/components/NotificationContainer";
-import { NotificationsModal } from "@shared/components/NotificationsModal";
-import { QuickActionsModal } from "@shared/components/QuickActionsModal";
-import { cn } from "@shared/utils/cn";
+import { useUIStore } from "@/shared/state/ui.store";
+import { NotificationContainer } from "@/shared/components/NotificationContainer";
+import { NotificationsModal } from "@/shared/components/NotificationsModal";
+import { QuickActionsModal } from "@/shared/components/QuickActionsModal";
+import { cn } from "@/shared/utils/cn";
 
 interface AppShellProps {
   children: React.ReactNode;

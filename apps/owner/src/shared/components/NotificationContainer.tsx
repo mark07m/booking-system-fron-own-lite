@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { useUIStore } from "@shared/state/ui.store";
-import { XMarkIcon, CheckCircleIcon, ExclamationTriangleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { useUIStore } from "@/shared/state/ui.store";
+import { XMarkIcon, CheckCircleIcon, ExclaimationTriangleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 
 const iconMap = {
   success: CheckCircleIcon,
   error: XCircleIcon,
-  warning: ExclamationTriangleIcon,
+  warning: ExclaimationTriangleIcon,
   info: InformationCircleIcon,
 };
 
@@ -67,7 +67,7 @@ export function NotificationContainer() {
                     onClick={() => removeNotification(notification.id)}
                   >
                     <span className="sr-only">Закрыть</span>
-                    <XMarkIcon className="h-5 w-5" />
+                    <XMarkIcon className="h-4 w-4" />
                   </button>
                 </div>
               </div>

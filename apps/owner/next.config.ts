@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Transpile packages from monorepo
+  transpilePackages: ["@booking-system/ui", "@booking-system/theme"],
+
   // Security headers
   async headers() {
     return [

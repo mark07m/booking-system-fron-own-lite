@@ -1,5 +1,6 @@
 // SSR/SSG optimization utilities
 
+import React from "react";
 import { cache } from "react";
 
 // Server-side data fetching with caching
@@ -269,12 +270,9 @@ export class SSRErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback || <div>Something went wrong during server-side rendering.</div>;
+      return this.props.fallback || React.createElement('div', null, 'Something went wrong during server-side rendering.');
     }
 
     return this.props.children;
   }
 }
-
-// Import React for type definitions
-import React from "react";

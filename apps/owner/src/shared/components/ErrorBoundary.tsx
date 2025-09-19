@@ -1,8 +1,8 @@
 "use client";
 
 import React, { Component, ErrorInfo, ReactNode } from "react";
-import { Button } from "@shared/ui/Button";
-import { ExclamationTriangleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
+import { Button } from "@/shared/ui/Button";
+import { ExclaimationTriangleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
 interface Props {
   children: ReactNode;
@@ -76,7 +76,7 @@ export class ErrorBoundary extends Component<Props, State> {
         <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
           <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
             <div className="flex justify-center mb-4">
-              <ExclamationTriangleIcon className="h-16 w-16 text-red-500" />
+              <ExclaimationTriangleIcon className="h-16 w-16 text-red-500" />
             </div>
             
             <h1 className="text-xl font-semibold text-gray-900 mb-2">

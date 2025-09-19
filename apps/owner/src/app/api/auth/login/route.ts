@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ServerCookieManager } from "@shared/utils/cookies";
-import { validateCSRFToken } from "@shared/utils/cookies";
-import { env } from "@shared/config/env";
+import { ServerCookieManager, validateCSRFToken } from "@/shared/utils/cookies.server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -61,7 +59,7 @@ export async function POST(request: NextRequest) {
       response.cookies.set("remember_me", "true", {
         maxAge: 60 * 60 * 24 * 30, // 30 days
         httpOnly: true,
-        secure: env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
         path: "/",
       });

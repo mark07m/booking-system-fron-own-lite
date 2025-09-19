@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { Button } from "@/shared/ui/Button";
-import { ExclamationTriangleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
+import { ExclaimationTriangleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 
 export default function Error({
   error,
@@ -21,7 +21,7 @@ export default function Error({
       <div className="max-w-md w-full text-center">
         <div className="mb-8">
           <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
-            <ExclamationTriangleIcon className="h-8 w-8 text-red-600" />
+            <ExclaimationTriangleIcon className="h-8 w-8 text-red-600" />
           </div>
           <h1 className="text-2xl font-semibold text-gray-900 mb-2">
             Что-то пошло не так

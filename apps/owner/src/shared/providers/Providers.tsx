@@ -3,7 +3,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState, useEffect } from "react";
-import { useAuthStore } from "@shared/state/auth.store";
+import { useAuthStore } from "@/shared/state/auth.store";
 
 interface ProvidersProps {
   children: React.ReactNode;
