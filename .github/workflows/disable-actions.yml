@@ -1,0 +1,24 @@
+# Временное отключение GitHub Actions
+# Этот файл отключает все остальные workflows
+# Для включения Actions удалите этот файл
+
+name: Disable Actions
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Причина отключения'
+        required: false
+        default: 'Временное отключение для отладки'
+
+jobs:
+  disable-notification:
+    name: Actions Disabled
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify that Actions are disabled
+        run: |
+          echo "🚫 GitHub Actions временно отключены"
+          echo "Причина: ${{ github.event.inputs.reason || 'Временное отключение для отладки' }}"
+          echo "Для включения Actions удалите файл .github/workflows/disable-actions.yml"
