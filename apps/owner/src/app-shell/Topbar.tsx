@@ -60,7 +60,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
               onClick={onMenuClick}
               className="mr-2 lg:hidden overflow-hidden"
             >
-              <Bars3Icon className="h-4 w-4 max-w-full max-h-full" />
+              <Bars3Icon className="h-4 w-4" />
             </Button>
           
           {/* Page title */}
@@ -75,7 +75,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         <div className="flex-1 max-w-lg mx-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MagnifyingGlassIcon className="h-4 w-4 max-w-full max-h-full text-gray-400" />
+              <MagnifyingGlassIcon className="h-4 w-4  text-gray-400" />
             </div>
             <input
               type="text"
@@ -95,7 +95,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
               onClick={() => openModal("notifications")}
               className="relative overflow-hidden"
             >
-              <BellIcon className="h-4 w-4 max-w-full max-h-full" />
+              <BellIcon className="h-4 w-4" />
               {unreadNotifications > 0 && (
                 <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">
                   {unreadNotifications > 9 ? "9+" : unreadNotifications}
@@ -111,7 +111,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
             onClick={() => openModal("quick-actions")}
             className="hidden sm:flex overflow-hidden"
           >
-            <Cog6ToothIcon className="h-4 w-4 max-w-full max-h-full" />
+            <Cog6ToothIcon className="h-4 w-4" />
           </Button>
           
           {/* User profile dropdown */}
@@ -186,7 +186,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         <div className="lg:hidden border-t border-gray-200 p-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MagnifyingGlassIcon className="h-4 w-4 max-w-full max-h-full text-gray-400" />
+              <MagnifyingGlassIcon className="h-4 w-4  text-gray-400" />
             </div>
             <input
               type="text"

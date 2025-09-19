@@ -116,7 +116,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               onClick={onClose}
               className="lg:hidden"
             >
-              <XMarkIcon className="h-4 w-4 max-w-full max-h-full" />
+              <XMarkIcon className="h-4 w-4" />
             </Button>
           </div>
           
@@ -145,7 +145,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                     <div className="flex-shrink-0 overflow-hidden">
                       <item.icon 
                         className={cn(
-                          "h-4 w-4 max-w-full max-h-full",
+                          "h-4 w-4",
                           isActive ? "text-blue-700" : "text-gray-400 group-hover:text-gray-500"
                         )} 
                       />
@@ -187,7 +187,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                       <div className="flex-shrink-0 overflow-hidden mr-3">
                         <item.icon 
                           className={cn(
-                            "h-3.5 w-3.5 max-w-full max-h-full",
+                            "h-3.5 w-3.5",
                             isActive ? "text-blue-700" : "text-gray-400 group-hover:text-gray-500"
                           )} 
                         />

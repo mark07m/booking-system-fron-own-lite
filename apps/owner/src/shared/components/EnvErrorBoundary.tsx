@@ -45,7 +45,7 @@ export function EnvErrorBoundary({ children }: EnvErrorBoundaryProps) {
           <div className="flex items-center mb-4">
             <div className="flex-shrink-0 w-8 h-8 overflow-hidden">
               <svg
-                className="h-8 w-8 max-w-full max-h-full text-red-400"
+                className="h-8 w-8 text-red-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
