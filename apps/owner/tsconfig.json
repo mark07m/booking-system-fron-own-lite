@@ -34,7 +34,7 @@
         "src/*"
       ]
     },
-    "jsx": "react-jsx"
+    "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
