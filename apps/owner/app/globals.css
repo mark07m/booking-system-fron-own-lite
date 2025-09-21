@@ -189,54 +189,192 @@ select {
   }
 }
 
-/* Icon sizing fixes */
+/* ICON SIZING FIXES - Comprehensive solution */
+
+/* Base SVG rules - prevent stretching */
 svg {
-  display: block;
+  display: inline-block;
   flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  max-width: 1em;
+  max-height: 1em;
+  vertical-align: middle;
 }
 
-/* Ensure icons respect their size classes - but don't force them to fill container */
-[class*="h-"] svg,
-[class*="w-"] svg {
-  width: inherit;
-  height: inherit;
-  max-width: 100%;
-  max-height: 100%;
+/* Force all SVG elements to respect their container size */
+svg[class*="h-"],
+svg[class*="w-"] {
+  width: inherit !important;
+  height: inherit !important;
+  max-width: inherit !important;
+  max-height: inherit !important;
 }
 
-/* Prevent SVG from growing beyond container */
-.flex-shrink-0 svg {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+/* Prevent any SVG from expanding beyond intended size */
+svg:not([class*="h-"]):not([class*="w-"]) {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
 }
 
-/* Specific fix for error page icons */
-.min-h-screen svg {
-  width: 2rem;
-  height: 2rem;
-  max-width: 2rem;
-  max-height: 2rem;
+/* Specific fixes for common containers */
+.flex-shrink-0 svg,
+.inline-flex svg,
+.flex svg,
+button svg,
+a svg,
+div svg,
+p svg,
+span svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+  flex-shrink: 0 !important;
 }
 
-/* Default icon sizing */
+/* Override for explicitly sized icons */
+svg.h-4,
+svg.w-4 {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+svg.h-5,
+svg.w-5 {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+svg.h-6,
+svg.w-6 {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+svg.h-8,
+svg.w-8 {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+svg.h-12,
+svg.w-12 {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+/* Utility classes for icon sizing */
 .icon-sm {
-  width: 1rem;
-  height: 1rem;
+  width: 1rem !important;
+  height: 1rem !important;
 }
 
 .icon-md {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
 }
 
 .icon-lg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
 }
 
 .icon-xl {
-  width: 2rem;
-  height: 2rem;
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+/* Prevent full-screen icon issues */
+.min-h-screen svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+}
+
+/* Heroicons specific fixes */
+[data-testid="heroicon"],
+.heroicon {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+  flex-shrink: 0 !important;
+}
+
+/* Additional fixes for specific problematic patterns */
+/* Fix for icons in grid layouts */
+.grid svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+}
+
+/* Fix for icons in shadow containers */
+.shadow svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+}
+
+/* Fix for icons in rounded containers */
+.rounded-lg svg,
+.rounded-xl svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+}
+
+/* Fix for icons in overflow containers */
+.overflow-hidden svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+}
+
+/* Nuclear option - force all SVG elements to be properly sized */
+* svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+  flex-shrink: 0 !important;
+}
+
+/* Override for explicitly sized icons */
+* svg.h-4,
+* svg.w-4 {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+* svg.h-5,
+* svg.w-5 {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+* svg.h-6,
+* svg.w-6 {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+* svg.h-8,
+* svg.w-8 {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+* svg.h-12,
+* svg.w-12 {
+  width: 3rem !important;
+  height: 3rem !important;
 }

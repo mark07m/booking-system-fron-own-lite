@@ -1,9 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { ChevronRightIcon, HomeIcon } from "@heroicons/react/24/outline";
-import { cn } from "@shared/utils/cn";
+import { Breadcrumbs as UIBreadcrumbs } from "@ui";
 
 interface BreadcrumbItem {
   name: string;
@@ -67,34 +65,12 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
     return null;
   }
 
-  return (
-    <nav className={cn("flex", className)} aria-label="Breadcrumb">
-      <ol className="flex items-center space-x-2">
-        {breadcrumbItems.map((item, index) => (
-          <li key={item.name} className="flex items-center">
-            {index > 0 && (
-              <ChevronRightIcon className="h-4 w-4 text-gray-400 mx-2" />
-            )}
-            
-            {index === 0 && (
-              <HomeIcon className="h-4 w-4 text-gray-400 mr-1" />
-            )}
+  // Convert to UI library format
+  const uiItems = breadcrumbItems.map(item => ({
+    label: item.name,
+    href: item.href,
+    current: item.current
+  }));
 
-            {item.current ? (
-              <span className="text-sm font-medium text-gray-900">
-                {item.name}
-              </span>
-            ) : (
-              <Link
-                href={item.href || '#'}
-                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-              >
-                {item.name}
-              </Link>
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
+  return <UIBreadcrumbs items={uiItems} className={className} />;
 }

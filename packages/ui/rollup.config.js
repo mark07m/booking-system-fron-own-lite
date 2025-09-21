@@ -30,6 +30,9 @@ export default [
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: './dist',
+        exclude: ['**/*.test.*', '**/*.spec.*'],
       }),
     ],
     external: ['react', 'react-dom'],

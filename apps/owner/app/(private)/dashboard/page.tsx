@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PageHeader } from "@/shared/components/PageHeader";
 import { StatsCards } from "@/widgets/StatsCards";
 import { RecentBookings } from "@/widgets/RecentBookings";

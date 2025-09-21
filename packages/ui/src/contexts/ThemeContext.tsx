@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useEffect, useState } from "react";
 // Временно импортируем напрямую из файлов темы
 import { lightTheme } from "@booking-system/theme/src/presets/light";

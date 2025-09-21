@@ -3,15 +3,38 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@app-shell/*": ["src/app-shell/*"],
-      "@shared/*": ["src/shared/*"],
-      "@entities/*": ["src/entities/*"],
-      "@features/*": ["src/features/*"],
-      "@widgets/*": ["src/widgets/*"],
-      "@theme/*": ["../../packages/theme/src/*"],
-      "@config/*": ["../../packages/config/*"],
-      "@/*": ["src/*"]
-    }
+      "@app-shell/*": [
+        "src/app-shell/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@entities/*": [
+        "src/entities/*"
+      ],
+      "@features/*": [
+        "src/features/*"
+      ],
+      "@widgets/*": [
+        "src/widgets/*"
+      ],
+      "@theme/*": [
+        "../../packages/theme/src/*"
+      ],
+      "@config/*": [
+        "../../packages/config/*"
+      ],
+      "@ui": [
+        "../../packages/ui/src"
+      ],
+      "@ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",

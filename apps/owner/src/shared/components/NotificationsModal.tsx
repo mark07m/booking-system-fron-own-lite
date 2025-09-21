@@ -59,8 +59,8 @@ export function NotificationsModal() {
         <div className="space-y-3 max-h-96 overflow-y-auto">
           {notifications.length === 0 ? (
             <div className="text-center py-8">
-              <div className="mx-auto h-12 w-12 text-gray-400">
-                <InformationCircleIcon className="h-12 w-12" />
+              <div className="mx-auto h-12 w-12 text-gray-400 flex items-center justify-center">
+                <InformationCircleIcon className="h-8 w-8" />
               </div>
               <h3 className="mt-2 text-sm font-medium text-gray-900">
                 Нет уведомлений
@@ -106,7 +106,7 @@ export function NotificationsModal() {
                         </h4>
                         <div className="flex items-center space-x-2">
                           <span className="text-xs text-gray-500">
-                            {formatDateTime(notification.id)} {/* Using ID as timestamp for demo */}
+                            {new Date(notification.createdAt || Date.now()).toLocaleString('ru-RU')}
                           </span>
                           {!isRead && (
                             <button

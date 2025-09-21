@@ -5,8 +5,20 @@ export const formatDate = (
   date: string | Date,
   formatStr: string = "dd.MM.yyyy"
 ): string => {
-  const dateObj = typeof date === "string" ? parseISO(date) : date;
-  return format(dateObj, formatStr, { locale: ru });
+  try {
+    const dateObj = typeof date === "string" ? parseISO(date) : date;
+    
+    // Check if the date is valid
+    if (isNaN(dateObj.getTime())) {
+      console.warn("Invalid date provided to formatDate:", date);
+      return "Неверная дата";
+    }
+    
+    return format(dateObj, formatStr, { locale: ru });
+  } catch (error) {
+    console.warn("Error formatting date:", error, "Input:", date);
+    return "Неверная дата";
+  }
 };
 
 export const formatDateTime = (date: string | Date): string => {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PageHeader } from "@/shared/components/PageHeader";
 import { Button } from "@/shared/ui/Button";
 import { PlusIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";

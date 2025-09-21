@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { authClient } from "@shared/api/auth.client";
-import { useAuthStore } from "@shared/state/auth.store";
+import { authClient } from "@/shared/api/auth.client";
+import { useAuthStore } from "@/shared/state/auth.store";
 
 export function useAuth() {
   const { user, isAuthenticated, setUser, setLoading } = useAuthStore();

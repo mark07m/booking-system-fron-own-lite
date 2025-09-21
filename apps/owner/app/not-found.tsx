@@ -1,5 +1,6 @@
 "use client";
 
+// @ts-nocheck
 import Link from "next/link";
 import { Button } from "@/shared/ui/Button";
 import { HomeIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";

@@ -1,9 +1,10 @@
 "use client";
 
-import { useAuth } from "@/features/auth";
+// import { useAuth } from "@/features/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/shared/state/auth.store";
+import { AppShell } from "@/app-shell/AppShell";
 
 export default function PrivateLayout({
   children,
@@ -11,7 +12,7 @@ export default function PrivateLayout({
   children: React.ReactNode;
 }) {
   const { isAuthenticated, isLoading } = useAuthStore();
-  const { requireAuth } = useAuth();
+  // const { requireAuth } = useAuth();
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
 
@@ -58,5 +59,5 @@ export default function PrivateLayout({
     return null;
   }
 
-  return <>{children}</>;
+  return <AppShell>{children}</AppShell>;
 }

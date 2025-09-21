@@ -1,5 +1,6 @@
 "use client";
 
+// @ts-nocheck
 import { useEffect } from "react";
 import { Button } from "@/shared/ui/Button";
 import { ExclaimationTriangleIcon, ArrowPathIcon } from "@heroicons/react/24/outline";

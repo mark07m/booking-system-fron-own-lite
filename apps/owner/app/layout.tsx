@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppShell } from "@/app-shell/AppShell";
 import { EnvErrorBoundary } from "@/shared/components/EnvErrorBoundary";
 import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
 import { Providers } from "@/shared/providers/Providers";
@@ -79,7 +78,7 @@ export default function RootLayout({
         <Providers>
           <EnvErrorBoundary>
             <ErrorBoundary>
-              <AppShell>{children}</AppShell>
+              {children}
             </ErrorBoundary>
           </EnvErrorBoundary>
         </Providers>
