@@ -41,7 +41,7 @@ export function AppShell({ children }: AppShellProps) {
       <div 
         className={cn(
           "flex flex-col min-h-screen transition-all duration-300 ease-in-out",
-          sidebarOpen ? "lg:ml-64" : "ml-0"
+          "lg:ml-64" // Always add margin on desktop since sidebar is fixed
         )}
       >
         {/* Topbar */}

@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } f
 import { API_BASE_URL } from "@/shared/config/constants";
 import { ApiResponse, ApiError } from "@/shared/types/api.types";
 import { ClientCookieManager } from "@/shared/utils/cookies";
+import { parseRateLimitHeaders, getRateLimitMessage } from "@/shared/utils/rate-limit";
 
 // Create axios instance with base configuration
 export const apiClient: AxiosInstance = axios.create({
@@ -85,8 +86,20 @@ apiClient.interceptors.response.use(
     
     // Handle 429 Too Many Requests - Rate limiting
     if (error.response?.status === 429) {
-      const retryAfter = error.response.headers["retry-after"];
-      console.warn(`Rate limited. Retry after ${retryAfter} seconds`);
+      const rateLimitInfo = parseRateLimitHeaders(error.response.headers);
+      
+      if (rateLimitInfo) {
+        const message = getRateLimitMessage(rateLimitInfo);
+        console.warn(`Rate limited: ${message}`);
+        
+        // Show user-friendly error message
+        if (typeof window !== "undefined") {
+          // You can integrate this with your notification system
+          console.error(message);
+        }
+      } else {
+        console.warn("Rate limited. Please wait before making more requests.");
+      }
     }
     
     // Handle 5xx Server Errors

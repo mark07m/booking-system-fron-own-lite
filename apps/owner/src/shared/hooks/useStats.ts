@@ -17,8 +17,9 @@ export function useDashboardStats() {
   return useQuery({
     queryKey: statsKeys.dashboard(),
     queryFn: () => statsClient.getDashboardStats(),
-    staleTime: 2 * 60 * 1000, // 2 minutes
-    refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes
+    staleTime: 5 * 60 * 1000, // 5 minutes - increased from 2 minutes
+    refetchInterval: 10 * 60 * 1000, // Refetch every 10 minutes - increased from 5 minutes
+    refetchIntervalInBackground: false, // Don't refetch when tab is not active
   });
 }
 
@@ -27,7 +28,8 @@ export function useBookingStats() {
   return useQuery({
     queryKey: statsKeys.bookings(),
     queryFn: () => statsClient.getBookingStats(),
-    staleTime: 2 * 60 * 1000, // 2 minutes
+    staleTime: 5 * 60 * 1000, // 5 minutes - increased from 2 minutes
+    refetchIntervalInBackground: false, // Don't refetch when tab is not active
   });
 }
 
@@ -36,6 +38,7 @@ export function useRevenueStats() {
   return useQuery({
     queryKey: statsKeys.revenue(),
     queryFn: () => statsClient.getRevenueStats(),
-    staleTime: 2 * 60 * 1000, // 2 minutes
+    staleTime: 5 * 60 * 1000, // 5 minutes - increased from 2 minutes
+    refetchIntervalInBackground: false, // Don't refetch when tab is not active
   });
 }

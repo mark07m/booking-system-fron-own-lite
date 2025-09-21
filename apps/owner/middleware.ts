@@ -57,31 +57,69 @@ export function middleware(request: NextRequest) {
     });
   }
   
-  // Rate limiting (basic implementation)
-  const ip = request.ip || request.headers.get("x-forwarded-for") || "unknown";
-  const rateLimitKey = `rate_limit_${ip}`;
+  // Rate limiting - only apply to API routes and dynamic pages
+  const isApiRoute = pathname.startsWith('/api/');
+  const isDynamicPage = !pathname.includes('.') && !pathname.startsWith('/_next/');
   
-  // This is a basic implementation - in production, use Redis or similar
-  const rateLimitCount = request.cookies.get(rateLimitKey)?.value || "0";
-  const count = parseInt(rateLimitCount, 10);
-  
-  if (count > 100) { // 100 requests per window
-    return new NextResponse("Rate limit exceeded", { 
-      status: 429,
-      headers: {
-        "Retry-After": "900", // 15 minutes
-      },
+  if (isApiRoute || isDynamicPage) {
+    const ip = request.ip || request.headers.get("x-forwarded-for") || "unknown";
+    const rateLimitKey = `rate_limit_${ip}`;
+    
+    // Get current count and timestamp
+    const rateLimitData = request.cookies.get(rateLimitKey)?.value;
+    const now = Date.now();
+    const windowMs = 15 * 60 * 1000; // 15 minutes
+    const maxRequests = 50; // Reduced from 100 to 50 for API/dynamic routes only
+    
+    let count = 0;
+    let windowStart = now;
+    
+    if (rateLimitData) {
+      try {
+        const [countStr, windowStartStr] = rateLimitData.split(':');
+        count = parseInt(countStr, 10) || 0;
+        windowStart = parseInt(windowStartStr, 10) || now;
+        
+        // Reset if window has expired
+        if (now - windowStart > windowMs) {
+          count = 0;
+          windowStart = now;
+        }
+      } catch (error) {
+        // Invalid data, reset
+        count = 0;
+        windowStart = now;
+      }
+    }
+    
+    if (count >= maxRequests) {
+      const retryAfter = Math.ceil((windowMs - (now - windowStart)) / 1000);
+      return new NextResponse("Rate limit exceeded", { 
+        status: 429,
+        headers: {
+          "Retry-After": retryAfter.toString(),
+          "X-RateLimit-Limit": maxRequests.toString(),
+          "X-RateLimit-Remaining": "0",
+          "X-RateLimit-Reset": new Date(windowStart + windowMs).toISOString(),
+        },
+      });
+    }
+    
+    // Increment rate limit counter
+    const newCount = count + 1;
+    response.cookies.set(rateLimitKey, `${newCount}:${windowStart}`, {
+      maxAge: Math.ceil(windowMs / 1000), // Convert to seconds
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      path: "/",
     });
+    
+    // Add rate limit headers
+    response.headers.set("X-RateLimit-Limit", maxRequests.toString());
+    response.headers.set("X-RateLimit-Remaining", (maxRequests - newCount).toString());
+    response.headers.set("X-RateLimit-Reset", new Date(windowStart + windowMs).toISOString());
   }
-  
-  // Increment rate limit counter
-  response.cookies.set(rateLimitKey, (count + 1).toString(), {
-    maxAge: 900, // 15 minutes
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-    path: "/",
-  });
   
   // Check if the current path is a public route
   const isPublicRoute = publicRoutes.some(route => 
