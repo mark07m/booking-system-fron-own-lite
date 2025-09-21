@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // GET /api/health - Health check endpoint
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     return NextResponse.json({
       status: "ok",

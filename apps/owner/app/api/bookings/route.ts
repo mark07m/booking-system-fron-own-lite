@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ServerCookieManager, validateCSRFToken } from "@/shared/utils/cookies.server";
+import { validateCSRFToken } from "@/shared/utils/cookies.server";
 
 // Mock data for demo purposes
 const mockBookings = [

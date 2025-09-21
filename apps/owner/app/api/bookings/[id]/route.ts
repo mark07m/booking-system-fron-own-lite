@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ServerCookieManager, validateCSRFToken } from "@/shared/utils/cookies.server";
+import { validateCSRFToken } from "@/shared/utils/cookies.server";
 
 // Mock data - in real app, this would come from database
 const mockBookings = [
@@ -41,7 +41,7 @@ const mockBookings = [
 // GET /api/bookings/[id] - Get single booking
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -53,7 +53,7 @@ export async function GET(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
     const booking = mockBookings.find(b => b.id === id);
 
     if (!booking) {
@@ -80,7 +80,7 @@ export async function GET(
 // PUT /api/bookings/[id] - Update booking
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -103,7 +103,7 @@ export async function PUT(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     
     const bookingIndex = mockBookings.findIndex(b => b.id === id);
@@ -141,7 +141,7 @@ export async function PUT(
 // DELETE /api/bookings/[id] - Delete booking
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Check authentication
@@ -164,7 +164,7 @@ export async function DELETE(
       );
     }
 
-    const { id } = params;
+    const { id } = await params;
     const bookingIndex = mockBookings.findIndex(b => b.id === id);
     
     if (bookingIndex === -1) {
